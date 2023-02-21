@@ -7,26 +7,26 @@ status_check $?
 
 
 print_head "Removing the old content"
-rm -rf /usr/share/nginx/html/* &>>{log_file}
+rm -rf /usr/share/nginx/html/* &>>${log_file}
 status_check $?
 
 print_head "Downloading the frontend source"
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>{log_file}
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>${log_file}
 status_check $?
 
 print_head "Extracting downloaded frontend"
 cd /usr/share/nginx/html 
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>>${log_file}
 status_check $?
 
 print_head "Copying Nginx config for roboshop"
-cp {code_dir}/config/nginx_roboshop.conf /etc/nginx/default.d/roboshop.conf &>>{log_file}
+cp {code_dir}/config/nginx_roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${log_file}
 status_check $?
 
 print_head "Enabling nginx"
-systemctl enable nginx 
+systemctl enable nginx &>>${log_file}
 status_check $?
 
 print_head "Starting nginx"
-systemctl start nginx
+systemctl start nginx &>>${log_file}
 status_check $?
