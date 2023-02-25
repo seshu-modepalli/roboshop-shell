@@ -53,7 +53,7 @@ schema_setup(){
         status_check $?
 
         print_head "Load schema"
-        mongo --host mongodb-dev.devopsaws.online </app/schema/${component}.js &>>${log_file}
+        mongo --host mongodb.devopsaws.online </app/schema/${component}.js &>>${log_file}
         status_check $?
     elif [ "$schema_type" = "mysql" ]; then
         print_head "Install MySQL Client"
