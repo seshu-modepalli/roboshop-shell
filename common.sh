@@ -68,7 +68,7 @@ schema_setup(){
     }
     systemd_setup(){
         print_head "Copy SyatemD Service file"
-        cp ${code_dir}/config/{component}.service /etc/systemd/system/${component}.service &>>${log_file}
+        cp ${code_dir}/config/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
         status_check $?
 
         sed -i -e "s/ROBOSHOP_USER_PASSWORD/${roboshop_app_password}/" /etc/systemd/system/${component}.service &>>${log_file}
