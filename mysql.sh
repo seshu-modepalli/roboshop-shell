@@ -2,7 +2,7 @@ source common.sh
 
 mysql_root_password=$1
 if [ -z ${mysql_root_password} ]; then
-    echo -e "\e[31Missing MySql root password argument \e[0m]"
+    echo -e "\e[31mMissing MySql root password argument \e[0m]"
     exit 1
 fi
 
@@ -11,7 +11,7 @@ dnf module disable mysql -y &>>${log_file}
 status_check $?
 
 print_head "Copy Mysql repo file"
-cp {code_dir}/config/mysql.repo /etc/yum.repos.d/mysql.repo &>>${log_file}
+cp ${code_dir}/config/mysql.repo /etc/yum.repos.d/mysql.repo &>>${log_file}
 status_check $?
 
 print_head "Install mysql server"
